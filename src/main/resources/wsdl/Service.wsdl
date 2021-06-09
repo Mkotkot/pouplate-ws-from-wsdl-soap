@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="http://tempuri.org/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+            <s:element name="CheckTicket">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="TicketID" type="s:decimal"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s:int"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="CheckTicketResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="CheckTicketResult" type="s:boolean"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetUserInfo">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetUserInfoResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetUserInfoResult" type="tns:UserInfo"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="UserInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CompanyIDUnique" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CompanyCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="BranchID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="FlexBranchCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="BranchName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OfficeID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OfficeName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="UserTypeID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="UserTypeName" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetAll_UserInfo_With_ApplicationID">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAll_UserInfo_With_ApplicationIDResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetAll_UserInfo_With_ApplicationIDResult"
+                                   type="tns:ArrayOfUserInfo"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfUserInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="UserInfo" nillable="true" type="tns:UserInfo"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetApplicationName">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetApplicationNameResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetApplicationNameResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGroupName">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetGroupNameResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetGroupNameResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAll_Branches">
+                <s:complexType/>
+            </s:element>
+            <s:element name="GetAll_BranchesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetAll_BranchesResult"
+                                   type="tns:ArrayOfBranchInfo"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfBranchInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="BranchInfo" nillable="true"
+                               type="tns:BranchInfo"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="BranchInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="BranchID" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="FlexBranchCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="BranchName" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetAllPackages">
+                <s:complexType/>
+            </s:element>
+            <s:element name="GetAllPackagesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetAllPackagesResult"
+                                   type="tns:ArrayOfPackageClass"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfPackageClass">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="PackageClass" nillable="true"
+                               type="tns:PackageClass"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="PackageClass">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PackageName" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetSpecificPackages">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="packageID" type="tns:ArrayOfInt"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfInt">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetSpecificPackagesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetSpecificPackagesResult"
+                                   type="tns:ArrayOfPackageClass"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetExceptPackagese">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="packageID" type="tns:ArrayOfInt"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetExceptPackageseResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetExceptPackageseResult"
+                                   type="tns:ArrayOfPackageClass"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetExceptPackageseByEmp">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="empNO" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetExceptPackageseByEmpResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetExceptPackageseByEmpResult"
+                                   type="tns:ArrayOfPackageClass"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetUserPackages">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetUserPackagesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetUserPackagesResult"
+                                   type="tns:ArrayOfPackageClass"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPackageName">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="packageID" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetPackageNameResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetPackageNameResult" type="tns:PackageClass"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetUserApplication">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetUserApplicationResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetUserApplicationResult"
+                                   type="tns:ArrayOfUser_Application"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfUser_Application">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="User_Application" nillable="true"
+                               type="tns:User_Application"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="User_Application">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="PackageID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="PackageName" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s:int"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="PackageGroupID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ApplicationName" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ApplicationURl" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="CheckTicketSoapIn">
+        <wsdl:part name="parameters" element="tns:CheckTicket"/>
+    </wsdl:message>
+    <wsdl:message name="CheckTicketSoapOut">
+        <wsdl:part name="parameters" element="tns:CheckTicketResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserInfoSoapIn">
+        <wsdl:part name="parameters" element="tns:GetUserInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserInfoSoapOut">
+        <wsdl:part name="parameters" element="tns:GetUserInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAll_UserInfo_With_ApplicationIDSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAll_UserInfo_With_ApplicationID"/>
+    </wsdl:message>
+    <wsdl:message name="GetAll_UserInfo_With_ApplicationIDSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAll_UserInfo_With_ApplicationIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetApplicationNameSoapIn">
+        <wsdl:part name="parameters" element="tns:GetApplicationName"/>
+    </wsdl:message>
+    <wsdl:message name="GetApplicationNameSoapOut">
+        <wsdl:part name="parameters" element="tns:GetApplicationNameResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetGroupNameSoapIn">
+        <wsdl:part name="parameters" element="tns:GetGroupName"/>
+    </wsdl:message>
+    <wsdl:message name="GetGroupNameSoapOut">
+        <wsdl:part name="parameters" element="tns:GetGroupNameResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAll_BranchesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAll_Branches"/>
+    </wsdl:message>
+    <wsdl:message name="GetAll_BranchesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAll_BranchesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllPackagesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAllPackages"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllPackagesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAllPackagesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetSpecificPackagesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetSpecificPackages"/>
+    </wsdl:message>
+    <wsdl:message name="GetSpecificPackagesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetSpecificPackagesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetExceptPackageseSoapIn">
+        <wsdl:part name="parameters" element="tns:GetExceptPackagese"/>
+    </wsdl:message>
+    <wsdl:message name="GetExceptPackageseSoapOut">
+        <wsdl:part name="parameters" element="tns:GetExceptPackageseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetExceptPackageseByEmpSoapIn">
+        <wsdl:part name="parameters" element="tns:GetExceptPackageseByEmp"/>
+    </wsdl:message>
+    <wsdl:message name="GetExceptPackageseByEmpSoapOut">
+        <wsdl:part name="parameters" element="tns:GetExceptPackageseByEmpResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserPackagesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetUserPackages"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserPackagesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetUserPackagesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPackageNameSoapIn">
+        <wsdl:part name="parameters" element="tns:GetPackageName"/>
+    </wsdl:message>
+    <wsdl:message name="GetPackageNameSoapOut">
+        <wsdl:part name="parameters" element="tns:GetPackageNameResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserApplicationSoapIn">
+        <wsdl:part name="parameters" element="tns:GetUserApplication"/>
+    </wsdl:message>
+    <wsdl:message name="GetUserApplicationSoapOut">
+        <wsdl:part name="parameters" element="tns:GetUserApplicationResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ServiceSoap">
+        <wsdl:operation name="CheckTicket">
+            <wsdl:input message="tns:CheckTicketSoapIn"/>
+            <wsdl:output message="tns:CheckTicketSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserInfo">
+            <wsdl:input message="tns:GetUserInfoSoapIn"/>
+            <wsdl:output message="tns:GetUserInfoSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAll_UserInfo_With_ApplicationID">
+            <wsdl:input message="tns:GetAll_UserInfo_With_ApplicationIDSoapIn"/>
+            <wsdl:output message="tns:GetAll_UserInfo_With_ApplicationIDSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetApplicationName">
+            <wsdl:input message="tns:GetApplicationNameSoapIn"/>
+            <wsdl:output message="tns:GetApplicationNameSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetGroupName">
+            <wsdl:input message="tns:GetGroupNameSoapIn"/>
+            <wsdl:output message="tns:GetGroupNameSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAll_Branches">
+            <wsdl:input message="tns:GetAll_BranchesSoapIn"/>
+            <wsdl:output message="tns:GetAll_BranchesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllPackages">
+            <wsdl:input message="tns:GetAllPackagesSoapIn"/>
+            <wsdl:output message="tns:GetAllPackagesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetSpecificPackages">
+            <wsdl:input message="tns:GetSpecificPackagesSoapIn"/>
+            <wsdl:output message="tns:GetSpecificPackagesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetExceptPackagese">
+            <wsdl:input message="tns:GetExceptPackageseSoapIn"/>
+            <wsdl:output message="tns:GetExceptPackageseSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetExceptPackageseByEmp">
+            <wsdl:input message="tns:GetExceptPackageseByEmpSoapIn"/>
+            <wsdl:output message="tns:GetExceptPackageseByEmpSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserPackages">
+            <wsdl:input message="tns:GetUserPackagesSoapIn"/>
+            <wsdl:output message="tns:GetUserPackagesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetPackageName">
+            <wsdl:input message="tns:GetPackageNameSoapIn"/>
+            <wsdl:output message="tns:GetPackageNameSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserApplication">
+            <wsdl:input message="tns:GetUserApplicationSoapIn"/>
+            <wsdl:output message="tns:GetUserApplicationSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CheckTicket">
+            <soap:operation soapAction="http://tempuri.org/CheckTicket" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserInfo">
+            <soap:operation soapAction="http://tempuri.org/GetUserInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAll_UserInfo_With_ApplicationID">
+            <soap:operation soapAction="http://tempuri.org/GetAll_UserInfo_With_ApplicationID" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetApplicationName">
+            <soap:operation soapAction="http://tempuri.org/GetApplicationName" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGroupName">
+            <soap:operation soapAction="http://tempuri.org/GetGroupName" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAll_Branches">
+            <soap:operation soapAction="http://tempuri.org/GetAll_Branches" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllPackages">
+            <soap:operation soapAction="http://tempuri.org/GetAllPackages" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSpecificPackages">
+            <soap:operation soapAction="http://tempuri.org/GetSpecificPackages" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetExceptPackagese">
+            <soap:operation soapAction="http://tempuri.org/GetExceptPackagese" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetExceptPackageseByEmp">
+            <soap:operation soapAction="http://tempuri.org/GetExceptPackageseByEmp" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserPackages">
+            <soap:operation soapAction="http://tempuri.org/GetUserPackages" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPackageName">
+            <soap:operation soapAction="http://tempuri.org/GetPackageName" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserApplication">
+            <soap:operation soapAction="http://tempuri.org/GetUserApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CheckTicket">
+            <soap12:operation soapAction="CheckTicket" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserInfo">
+            <soap12:operation soapAction="http://tempuri.org/GetUserInfo" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAll_UserInfo_With_ApplicationID">
+            <soap12:operation soapAction="http://tempuri.org/GetAll_UserInfo_With_ApplicationID" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetApplicationName">
+            <soap12:operation soapAction="http://tempuri.org/GetApplicationName" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGroupName">
+            <soap12:operation soapAction="http://tempuri.org/GetGroupName" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAll_Branches">
+            <soap12:operation soapAction="http://tempuri.org/GetAll_Branches" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllPackages">
+            <soap12:operation soapAction="http://tempuri.org/GetAllPackages" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSpecificPackages">
+            <soap12:operation soapAction="http://tempuri.org/GetSpecificPackages" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetExceptPackagese">
+            <soap12:operation soapAction="http://tempuri.org/GetExceptPackagese" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetExceptPackageseByEmp">
+            <soap12:operation soapAction="http://tempuri.org/GetExceptPackageseByEmp" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserPackages">
+            <soap12:operation soapAction="http://tempuri.org/GetUserPackages" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPackageName">
+            <soap12:operation soapAction="http://tempuri.org/GetPackageName" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetUserApplication">
+            <soap12:operation soapAction="http://tempuri.org/GetUserApplication" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Service">
+        <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+            <soap:address location="http://localhost:1880/SecurityServiceV.2/Service.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+            <soap12:address location="http://localhost:1880/SecurityServiceV.2/ServiceSoap12"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
